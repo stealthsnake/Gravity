@@ -33,4 +33,13 @@ public class health_bar : MonoBehaviour {
 		}
 		
 	}
+	
+	void LateUpdate(){
+		float button_width = (Screen.width / 2) - 10;
+		float ratio = one_life.rect.height / one_life.rect.width;
+		float button_height = button_width * ratio;
+		player_health_image.GetComponent<RectTransform> ().sizeDelta = new Vector2 (button_width,button_height);
+		
+	}
+
 }

@@ -41,4 +41,11 @@ public class button_scripts : MonoBehaviour {
 			break;
 		}
 	}
+	/*void LateUpdate(){
+		float button_width = (Screen.width / 2) - 10;
+		float ratio = level_1.rect.height / level_1.rect.width;
+		float button_height = button_width * ratio;
+		button_action.GetComponent<RectTransform> ().sizeDelta = new Vector2 (button_width,button_height);
+
+	}*/
 }

@@ -13,6 +13,11 @@ public class game_actions_scripts : MonoBehaviour {
 	//used to calculate time between two clicks
 	float startTime =0;
 
+
+	//used to calcualte countdownTime;
+	System.TimeSpan time_sec;
+	System.TimeSpan game_time = new System.TimeSpan (0, 1, 0);
+
 	//lable to display forcemode
 	public Text box_info;
 	public Button left_button;
@@ -27,18 +32,21 @@ public class game_actions_scripts : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		instance = this;
-	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		box_info.text = player_scripts.Instance.player_health+ "Distance:" + player_scripts.Instance.caltulate_distance ();
+		//box_info.text = player_scripts.Instance.player_health+ "Distance:" + player_scripts.Instance.caltulate_distance ();
 		if (startTime != 0) {
 			ForceMode = (int)Mathf.Round (Time.time - startTime)+1;
 			update_force_bar(jump_direction, false);
 		}
-		//if (player_scripts.Instance.player_health <= 0)
-			//Application.LoadLevel (0);
+		if (player_scripts.Instance.player_health <= 0)
+			Application.LoadLevel (0);
+
+		 
+		time_sec =  System.TimeSpan.FromSeconds (Time.timeSinceLevelLoad);
+		box_info.text = "Time Left:" +  (game_time.Subtract (time_sec)).Seconds.ToString ();
 	}
 
 	public void get_user_input (string direction) {
