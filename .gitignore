@@ -18,8 +18,8 @@ $RECYCLE.BIN/
 *.lnk
 
 #ignore folders
-Library/
-Temp/
+Library
+Temp
 # =========================
 # Operating System Files
 # =========================
