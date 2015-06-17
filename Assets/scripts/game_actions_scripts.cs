@@ -12,11 +12,14 @@ public class game_actions_scripts : MonoBehaviour {
 
 	//used to calculate time between two clicks
 	float startTime =0;
+	bool game_stat = false;
 
 
 	//used to calcualte countdownTime;
 	System.TimeSpan time_sec;
 	System.TimeSpan game_time = new System.TimeSpan (0, 1, 0);
+	int game_time_left = 0, finishing_time=0;
+
 
 	//lable to display forcemode
 	public Text box_info;
@@ -32,6 +35,7 @@ public class game_actions_scripts : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		instance = this;
+		game_stat = true;
 	}
 	
 	// Update is called once per frame
@@ -46,7 +50,12 @@ public class game_actions_scripts : MonoBehaviour {
 
 		 
 		time_sec =  System.TimeSpan.FromSeconds (Time.timeSinceLevelLoad);
-		box_info.text = "Time Left:" +  (game_time.Subtract (time_sec)).Seconds.ToString ();
+
+
+		if (!finishline.Instance.get_display_win ())
+			game_time_left = (game_time.Subtract (time_sec)).Seconds;
+
+		box_info.text = "Time Left:" + game_time_left;
 	}
 
 	public void get_user_input (string direction) {
@@ -86,5 +95,7 @@ public class game_actions_scripts : MonoBehaviour {
 		return(force_map[ForceMode]);
 	}
 
-
+	public int time_left(){
+		return game_time_left;
+	}	
 }

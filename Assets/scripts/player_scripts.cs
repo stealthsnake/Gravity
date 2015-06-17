@@ -41,6 +41,10 @@ public class player_scripts : MonoBehaviour {
 	
 	// Update is called once per frame
 	void LateUpdate () {
+
+	}
+
+	void FixedUpdate(){
 	}
 
 	public Vector2 get_player_start_position()
@@ -94,5 +98,19 @@ public class player_scripts : MonoBehaviour {
 
 	public float get_jump_distance(){
 		return jump_y_distance;
+	}
+
+	public void check (){
+		var x = player_rb.position.x;
+		var y = player_rb.position.y;
+		
+		x = Mathf.Clamp (x, 
+		                 camera_scripts.Instance.get_bonds_x ().x + 0.25f,
+		                 camera_scripts.Instance.get_bonds_x().y + 0.25f);
+		y = Mathf.Clamp(y,
+		                camera_scripts.Instance.get_bonds_y().x + 0.25f,
+		                camera_scripts.Instance.get_bonds_y().y + 0.25f);
+		
+		player_rb.position = new Vector2 (x, y);
 	}
 }

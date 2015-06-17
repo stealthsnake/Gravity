@@ -55,6 +55,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   win_msg: {fileID: 0}
+  display_win: 0
 --- !u!212 &21277394
 SpriteRenderer:
   m_ObjectHideFlags: 1
